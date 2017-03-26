@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head>
+<title>301.guru</title>
+</head>
+<body>
+    <div layout:fragment="content" class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div  class="col-lg-12">
+                        <h1 class="brand-heading">Simplify your links</h1>
+                        
+                        <form class="" action="#" th:action="@{/generateShortToken}" method="post">
+                        	<div class="form-group">
+						       <input class="form-control" type="text" name="fullUrl" />
+						  	</div>
+                       		   						
+   							<button class="btn btn-default" type="submit" th:text="'SHORTEN URL'">URL</button>
+						</form>
+						
+						
+                    </div>
+                </div>
+				<hr/>
+				
+				<div th:if="${notFound != null}"  class="text-danger">
+					<strong>404:</strong> <p th:text="${notFound}"></p>
+				</div>
+				
+				<table  th:if="${url != null}" class="table table-striped">
+					<tbody>
+						<tr>
+							<td>Original Url</td>
+							<td th:text="${url.fullUrl}">http://www.example.org</td>
+						</tr>
+						<tr>
+							<td>Shorted Url</td>
+							<td><a th:href="${shortUrl}" target="_blank" th:text="${shortUrl}">http://localhost:8080/AbC123</a></td>
+						</tr>
+						<tr>
+							<td>Click Count</td>
+							<td th:text="${url.clickCount}">10</td>
+						</tr>
+						<tr>
+							<td>Shorten Count</td>
+							<td th:text="${url.shortenCount}">1</td>
+						</tr>
+					</tbody>
+				</table>
+
+				
+            </div>
+        </div>
+    </div>
+</body>
+</html>

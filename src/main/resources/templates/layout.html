@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"   >
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="URL Shortener" />
+    <meta name="author" content="eddi888" />
+    
+    <title>301.guru</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css}"  href="http://localhost:8080/webjars/bootstrap/4.0.0-alpha.6-1/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Custom ICON -->
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" href="../static/img/favicon.png" />   
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand page-scroll rainbow" th:href="@{/}" href="index.html">301.GURU</a>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    <div class="jumbotron" layout:fragment="content"></div>
+    
+    <script th:src="@{/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js}"  src="http://localhost:8080/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
