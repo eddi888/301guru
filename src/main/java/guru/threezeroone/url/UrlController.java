@@ -5,6 +5,9 @@ import java.util.Locale;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,9 @@ public class UrlController {
 	@Autowired
 	private UrlService urlService;
 	
+	@Value("${app.url:http://localhost:8080}")
+	private String appUrl;
+	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(Model model, Locale locale) {
         ModelAndView mav = new ModelAndView();
@@ -30,7 +36,7 @@ public class UrlController {
         return mav;
     }
     
-    @RequestMapping(value = "/generateShortToken", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView generateShortToken(@RequestParam(value = "fullUrl") String fullUrl) {
     	if (fullUrl==null || fullUrl.length()==0){
     		return new ModelAndView("index");
@@ -41,7 +47,30 @@ public class UrlController {
         mav.setViewName("index");
         mav.addObject("url", url);
         mav.addObject("shortUrl", urlService.getShortUrl(url.getShortToken()));
-        
+        mav.addObject("statsUrl", urlService.getStatsUrl(url.getShortToken()));
+        return mav;
+    }
+    
+    @RequestMapping(value = "/stats/{shortToken}", method = RequestMethod.GET)
+    public ModelAndView stats(@PathVariable(value = "shortToken") String shortToken) {
+    	Url url = urlService.findOneByShortToken(shortToken);
+    	
+    	ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+        mav.addObject("url", url);
+        mav.addObject("shortUrl", urlService.getShortUrl(url.getShortToken()));
+        mav.addObject("statsUrl", urlService.getStatsUrl(url.getShortToken()));
+        return mav;
+    }
+    
+    @RequestMapping(value = "/stats", method = RequestMethod.GET)
+    public ModelAndView statsList() {
+    	Page<Url> url = urlService.findAll(new PageRequest(0, 1000));
+    	//TODO pageing and sorting
+    	ModelAndView mav = new ModelAndView();
+        mav.setViewName("index");
+        mav.addObject("appUrl", appUrl);
+        mav.addObject("urlList", url.getContent());
         return mav;
     }
     

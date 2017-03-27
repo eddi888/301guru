@@ -11,7 +11,7 @@
                     <div  class="col-lg-12">
                         <h1 class="brand-heading">Simplify your links</h1>
                         
-                        <form class="" action="#" th:action="@{/generateShortToken}" method="post">
+                        <form class="" action="#" th:action="@{/}" method="post">
                         	<div class="form-group">
 						       <input class="form-control" type="text" name="fullUrl" />
 						  	</div>
@@ -39,6 +39,10 @@
 							<td><a th:href="${shortUrl}" target="_blank" th:text="${shortUrl}">http://localhost:8080/AbC123</a></td>
 						</tr>
 						<tr>
+							<td>Statistics</td>
+							<td><a th:href="${statsUrl}" th:text="${statsUrl}">http://localhost:8080/stats/AbC123</a></td>
+						</tr>
+						<tr>
 							<td>Click Count</td>
 							<td th:text="${url.clickCount}">10</td>
 						</tr>
@@ -48,10 +52,33 @@
 						</tr>
 					</tbody>
 				</table>
+				
+				<table  th:if="${urlList != null}" class="table table-striped">
+					<tbody>
+						<tr>
+							<th>Shorted Url</th>
+							<th>Click Count</th>
+							<th></th>
+						</tr>
 
+						<tr th:each="url : ${urlList}">
+							<td th:text="${url.fullUrl}">http://www.example.com</td>
+							<td th:text="${url.clickCount}">99</td>
+							<td ><a th:href="${appUrl}+'/stats/'+${url.shortToken}">DETAILS</a></td>
+						</tr>
+
+					</tbody>
+				</table>
 				
             </div>
+            
         </div>
+        
+        <footer>
+			<div class="container text-center">
+				<p class="text-muted credit" style="color: #fff"><a th:href="@{/stats/}">Analyse Statistics</a></p>
+			</div>
+		</footer>
     </div>
 </body>
 </html>

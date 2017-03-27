@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.dynamodbv2.model.InternalServerErrorException;
@@ -53,6 +55,9 @@ public class UrlService {
 		return appUrl+"/"+shortToken;
 	}
 	
+	public String getStatsUrl(String shortToken){
+		return appUrl+"/stats/"+shortToken;
+	}
 	
 	public String getFullUrl(String shortToken){
 		Url url = repository.findOneByShortToken(shortToken);
@@ -84,6 +89,12 @@ public class UrlService {
 		return shortToken.toString();
 	}
 	
+	public Url findOneByShortToken(String shortToken) {
+		return repository.findOneByShortToken(shortToken);
+	}
 	
+	public Page<Url> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
+	}
 	
 }
