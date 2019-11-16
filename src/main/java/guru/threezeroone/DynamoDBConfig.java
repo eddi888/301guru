@@ -16,9 +16,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 @EnableDynamoDBRepositories(basePackages = "guru.threezeroone")
 public class DynamoDBConfig {
 
-	@Value("${amazon.dynamodb.endpoint}")
-	private String amazonDynamoDBEndpoint;
-
 	@Value("${amazon.aws.accesskey}")
 	private String amazonAWSAccessKey;
 

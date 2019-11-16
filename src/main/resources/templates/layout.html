@@ -29,8 +29,17 @@
     </nav>
     
     <div class="jumbotron" layout:fragment="content"></div>
-    
+
+    <footer>
+        <div class="container text-center">
+            <p class="text-muted credit" style="color: #fff"><a th:href="@{/stats/}">Analyse Statistics</a></p>
+        </div>
+        <br/><br/><br/>
+        <div class="text-center">
+            <p style="color:grey;font-size:8px;" th:text="${@instanceInfoService.getHostnameAndIP()}">localhost.local / 127.0.0.1</p>
+        </div>
+    </footer>
     <script th:src="@{/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js}"  src="http://localhost:8080/webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
-    
+
 </body>
 </html>
