@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tree01guru
+spec:
+  rules:
+  - host: dev.301.guru
+    http:
+      paths:
+      - backend:
+          serviceName: tree01guru
+          servicePort: 8080
+        path: /

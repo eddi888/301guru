@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tree01guru
+  labels:
+    app: tree01guru
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: tree01guru
+  template:
+    metadata:
+      name: tree01guru
+      labels:
+        app: tree01guru
+    spec:
+      containers:
+      - name: tree01guru
+        image: guru.301/url-shorter
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+
