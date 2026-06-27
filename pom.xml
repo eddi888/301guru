@@ -48,6 +48,11 @@
 			<version>4.5.0</version>
 		</dependency>
 		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>1.11.477</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
@@ -58,11 +63,41 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>local-embedded-dynamodb</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>dynamodb-local</id>
+					<name>DynamoDB Local Release Repository</name>
+					<url>https://s3-us-west-2.amazonaws.com/dynamodb-local/release</url>
+				</repository>
+			</repositories>
+			<dependencies>
+				<dependency>
+					<groupId>com.amazonaws</groupId>
+					<artifactId>DynamoDBLocal</artifactId>
+					<version>1.11.477</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.invoke=ALL-UNNAMED</argLine>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

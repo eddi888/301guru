@@ -1,26 +1,30 @@
 
-# Prepair
-AWS Keys
-
+# Clone
+```console
+git clone <REPO_URL>
+cd 301guru
+```
 
 # Build
 ```console
-mvn clean package
-
+mvn -DskipTests clean package
 docker build -t guru.301/url-shorter .
 ```
 
 
 # Run on Docker
 ```console
-docker rm -f 301guru || true && docker run -d -p 8080:8080 --name 301guru guru.301/url-shorter
+docker rm -f 301guru || true
+docker run -d -p 7070:7070 --name 301guru guru.301/url-shorter
 ```
 
+Container startet mit Java 8, Spring-Profil `local` und Embedded DynamoDB (Port `8000` im Container).
 
-# Deploy on Kubernetes
-kubectl apply -f deploy/deployment.yml
-kubectl apply -f deploy/service.yml
-kubectl apply -f deploy/ingress.yml
+App aufrufen:
+
+```console
+http://localhost:7070
+```
 
 
 # Problems / troubleshooting?
@@ -58,59 +62,3 @@ docker start -a 301guru
 docker save
 ```
 
-```console
-kubectl get namespaces
-```
-
-```console
-kubectl get deployment
-```
-
-```console
-kubectl get pods -o wide
-```
-```console
-kubectl logs
-```
-
-```console
-kubectl exec tree01guru-<????POD-ID????> wget localhost:8080
-kubectl exec tree01guru-<????POD-ID????> cat index.html
-kubectl exec tree01guru-<????POD-ID????> rm index.html
-```
-
-```console
-kubectl apply --force -f deployment.yml 
-```
-
-```console
-kubectl delete pods tree01guru-<????POD-ID????>
-```
-
-```console
-kubectl get service
-```
-
-```console
-kubectl describe service tree01guru
-```
-
-```console
-kubectl get deployments
-```
-
-```console
-kubectl delete deployment tree01guru
-```
-
-```console
-kubectl describe ingress tree01guru
-```
-
-```console
-kubectl cluster-info
-```
-
-```console
-kubectl get all --all-namespaces
-```
