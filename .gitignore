@@ -27,3 +27,14 @@ nbdist/
 
 ### AWS ###
 src/test/resources/test.properties
+
+### Zusaetzliche Standard-Ignores ###
+*.class
+*.jar
+*.log
+.env*
+.vscode/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp

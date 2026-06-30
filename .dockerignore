@@ -1,0 +1,12 @@
+.git/
+.gitignore
+.dockerignore
+.idea/
+.vscode/
+specs/
+.specify/
+docs/
+*.log
+.env*
+coverage/
+node_modules/

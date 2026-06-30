@@ -24,3 +24,19 @@
 - Security ist In-Memory: `user` / `password` (`WebSecurityConfig`).
 - Geschützte Pfade sind nur `"/statistics"` und `"/webuser"`; URL-Statistikseiten liegen unter `"/stats"` und `"/stats/{shortToken}"`.
 - Das `Dockerfile` kopiert `target/301guru-0.0.1-SNAPSHOT.jar`; `ARG JAR_FILE` bei Änderungen an Artifact/Version in `pom.xml` anpassen.
+
+## Stil für Artefakte und Doku
+- Kurz halten: Listen/Tabellen statt aufgeblähter Fließtexte, nur das Notwendige.
+- Keine Wiederholungen, keine Platzhalter-Prosa, keine erfundenen Pseudo-Entities.
+- Optionale Abschnitte/Artefakte weglassen, wenn das Feature sie nicht braucht.
+- Siehe Constitution-Prinzip "VI. Concise Artifacts" als verbindliche Regel.
+
+## Commit-Messages
+- Immer auf Englisch (überschreibt die globale Deutsch-Regel).
+- Eine Zeile, kurz: der Titel der zugehörigen Spezifikation, ohne Body.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+at specs/001-developer-tooling-setup/plan.md
+<!-- SPECKIT END -->
